@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import AuthLayout from "../../components/layouts/AuthLayout";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
-import { validateEmail } from "../../utils/helper";
 import ProfilePhotoSelector from '../../components/Inputs/ProfilePhotoSelector';
 
 const SignUp = () => {
@@ -15,8 +14,30 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
+    const validateEmail = (email) => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    };
+
     // Handle Sign Up Form Submit
     const handleSignUp = async (e) => {
+
+      if(!fullName) {
+        setError("Please enter your name");
+        return; 
+      }
+
+      if(!validateEmail(email)) {
+        setError("Please enter the valid email address"); 
+        return; 
+      }
+
+      if(!password) {
+        setError("Please ente the password"); 
+        return; 
+      }
+
+      setError("");
 
 
     }
@@ -82,7 +103,7 @@ const SignUp = () => {
                             >
                               login
                             </Link>
-                          </p>
+                        </p>
             </form>
 
 
