@@ -102,7 +102,7 @@ const Home = () => {
         />
 
         <RecentIncome
-          transactions={dashboardData?.last6DaysIncome?.transactions || []}
+          transactions={dashboardData?.last60DaysIncome?.transactions || []}
           onSeeMore={() => navigate("/income")}
         />
       </div>
